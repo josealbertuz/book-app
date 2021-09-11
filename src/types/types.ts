@@ -1,10 +1,12 @@
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+
 export type StackParamList = {
     Home: undefined,
     Details: { bookId: string }
 };
 
-export type BookResponse = {
-    books: [],
+export type HomeScreenProps = NativeStackScreenProps<StackParamList, 'Home'>
+
 export type BookListItemProps = {
     id: string,
     title: string,
@@ -99,7 +101,4 @@ export type Doc = {
     first_sentence?:                       string[];
     subtitle?:                             string;
     id_bcid?:                              string[];
-}
-    isLoading: boolean,
-    error: boolean
 }
