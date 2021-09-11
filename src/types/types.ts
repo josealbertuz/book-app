@@ -11,6 +11,11 @@ export type BookListItemProps = {
     author?: string,
     image?: number
 }
+
+export type BookListProps = {
+    books : BookListItemProps[]
+}
+
 export type BookSearchState = {
     books: BookListItemProps[],
     isLoading: boolean,
