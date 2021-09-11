@@ -5,6 +5,12 @@ export type StackParamList = {
 
 export type BookResponse = {
     books: [],
+export type BookListItemProps = {
+    id: string,
+    title: string,
+    author?: string,
+    image?: number
+}
 export type BookSearchState = {
     books: BookListItemProps[],
     isLoading: boolean,
