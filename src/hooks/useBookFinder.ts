@@ -1,35 +1,34 @@
-import { useState, useEffect } from "react";
+import { useReducer, useEffect } from "react";
+import bookFinderReducer from "../reducers/bookFinderReducer";
 import AxiosInstace from "../services/AxiosInstace"
-import { BookSearchResponse, Doc, BookSearchState } from '../types/types';
+import { BookFinderResponse, Doc } from '../types/types';
 
 
 export const useBookFinder = (bookTitle: string) => {
 
-    const [bookResponse, setBooksResponse] = useState<BookSearchState>({
+    const [books, dispatch] = useReducer(bookFinderReducer, {
         books: [],
         isLoading: false,
         error: false
-    });
+    })
+
 
     const getBooksByTitle = async () => {
         try {
-            const { data } = await AxiosInstace.get<BookSearchResponse>(`/search.json?title=${bookTitle}`);
-            setBooksResponse({
-                books:  data.docs.map((book : Doc) => ({
+            const { data } = await AxiosInstace.get<BookFinderResponse>(`/search.json?title=${bookTitle}`);
+            dispatch({
+                type: 'success',
+                payload: data.docs.map((book : Doc) => ({
                     id: book.key,
                     title: book.title,
                     author: book.author_name ? book.author_name.shift() : 'Unknown',
                     image: book.cover_i
-                })),
-                isLoading: false,
-                error: false
-            });
+                }))
+            })
         } catch (error) {
-            setBooksResponse({
-                books: [],
-                isLoading: false,
-                error: true
-            });
+            dispatch({
+                type: 'error'
+            })
         }
     }
 
@@ -41,13 +40,10 @@ export const useBookFinder = (bookTitle: string) => {
             return;
         }
 
-        setBooksResponse({
-            books: [],
-            isLoading: true,
-            error: false
+        dispatch({
+            type: 'request'
         });
 
-    
         getBooksByTitle();
 
         return () => {
@@ -56,5 +52,5 @@ export const useBookFinder = (bookTitle: string) => {
         
     }, [bookTitle]);
 
-    return bookResponse;
+    return books;
 }

@@ -18,13 +18,18 @@ export type BookListProps = {
     books : BookListItemProps[]
 }
 
-export type BookSearchState = {
+export type BookFinderState = {
     books: BookListItemProps[],
     isLoading: boolean,
     error: boolean
 }
 
-export type BookSearchResponse = {
+export type BookFinderAction = | 
+{type: 'request'} |
+{type: 'success', payload: BookListItemProps[]} |
+{type: 'error'}
+
+export type BookFinderResponse = {
     numFound:      number;
     start:         number;
     numFoundExact: boolean;
