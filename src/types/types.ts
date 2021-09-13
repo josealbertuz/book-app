@@ -1,4 +1,5 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import DetailsScreen from '../screens/DetailsScreen';
 
 export type StackParamList = {
     Home: undefined,
@@ -6,6 +7,8 @@ export type StackParamList = {
 };
 
 export type HomeScreenNavigationProps = NativeStackScreenProps<StackParamList, 'Home'>
+
+export type DetailsScreenNavigationProps = NativeStackScreenProps<StackParamList, 'Details'>
 
 export type BookListItemProps = {
     id: string,
