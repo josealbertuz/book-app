@@ -1,13 +1,11 @@
 import React, { useState } from 'react'
-import { FlatList, StyleSheet, Text, TextInput, View } from 'react-native'
+import { StyleSheet, Text, TextInput, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useBookFinder } from '../hooks/useBookFinder';
-import BookListItem from '../components/BookListItem';
-import { HomeScreenProps } from '../types/types';
 import BookList from '../components/BookList';
 
 
-const HomeScreen = ({ navigation }: HomeScreenProps): JSX.Element => {
+const HomeScreen = (): JSX.Element => {
 
     const [value, setValue] = useState<string>('');
 

@@ -1,11 +1,17 @@
+import { NavigationProp, useNavigation } from '@react-navigation/native';
 import React from 'react'
-import { View, Text, StyleSheet, Image } from 'react-native'
-import { BookListItemProps } from '../types/types';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
+import { BookListItemProps, HomeScreenNavigationProps, StackParamList } from '../types/types';
 
 
-const BookListItem = ({ title, author, image }: BookListItemProps): JSX.Element => {
+const BookListItem = ({ id, title, author, image }: BookListItemProps): JSX.Element => {
+
+    const navigation = useNavigation<NavigationProp<StackParamList>>();
+
     return (
-        <View style={styles.container}>
+        <TouchableOpacity
+            onPress={() => navigation.navigate('Details', {bookId: id})} 
+            style={styles.container}>
             <Image
                 
                 source={{
@@ -18,7 +24,7 @@ const BookListItem = ({ title, author, image }: BookListItemProps): JSX.Element 
                 <Text style={styles.textStyle}>{title}</Text>
                 <Text style={styles.textStyle}>By {author}</Text>
             </View>
-        </View>
+        </TouchableOpacity>
     )
 }
 
