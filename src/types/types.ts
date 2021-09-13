@@ -5,7 +5,7 @@ export type StackParamList = {
     Details: { bookId: string }
 };
 
-export type HomeScreenProps = NativeStackScreenProps<StackParamList, 'Home'>
+export type HomeScreenNavigationProps = NativeStackScreenProps<StackParamList, 'Home'>
 
 export type BookListItemProps = {
     id: string,
