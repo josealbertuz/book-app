@@ -21,15 +21,15 @@ export type BookListProps = {
     books : BookListItemProps[]
 }
 
-export type BookFinderState = {
-    books: BookListItemProps[],
+export type RequestState<Type> = {
+    data?: Type,
     isLoading: boolean,
     error: boolean
 }
 
-export type BookFinderAction = | 
+export type RequestAction<Type> = | 
 {type: 'request'} |
-{type: 'success', payload: BookListItemProps[]} |
+{type: 'success', payload: Type } |
 {type: 'error'}
 
 export type BookFinderResponse = {
