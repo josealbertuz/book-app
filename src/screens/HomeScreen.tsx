@@ -9,7 +9,7 @@ const HomeScreen = (): JSX.Element => {
 
     const [value, setValue] = useState<string>('');
 
-    const { books, isLoading, error } = useBookFinder(value);
+    const { data : books, isLoading, error } = useBookFinder(value);
 
     return (
         <SafeAreaView style={styles.screen}>

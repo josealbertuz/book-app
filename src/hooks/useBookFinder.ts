@@ -7,7 +7,7 @@ import { BookFinderResponse, Doc } from '../types/types';
 export const useBookFinder = (bookTitle: string) => {
 
     const [books, dispatch] = useReducer(bookFinderReducer, {
-        books: [],
+        data: [],
         isLoading: false,
         error: false
     })

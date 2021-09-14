@@ -1,24 +1,24 @@
-import { BookFinderState, BookFinderAction } from '../types/types';
-export default (state : BookFinderState, action: BookFinderAction) : BookFinderState => {
+import { RequestState, BookListItemProps, RequestAction } from '../types/types';
+export default (state : RequestState<BookListItemProps>, action: RequestAction<BookListItemProps>) : RequestState<BookListItemProps> => {
 
     switch (action.type) {
         case 'request':
             return {
-                books: [],
+                data: [],
                 isLoading: true,
                 error: false
             };
 
         case 'success':
             return {
-                books: action.payload,
+                data: action.payload,
                 isLoading: false,
                 error: true
             };
 
         case 'error':
             return {
-                books: [],
+                data: [],
                 isLoading: false,
                 error: false
             }
