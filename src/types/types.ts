@@ -36,13 +36,13 @@ export type BookFinderResponse = {
     numFound:      number;
     start:         number;
     numFoundExact: boolean;
-    docs:          Doc[];
+    docs:          BooksFound[];
     num_found:     number;
     q:             string;
     offset:        null;
 }
 
-export type Doc = {
+export type BooksFound = {
     key:                                   string;
     text:                                  string[];
     type:                                  string;
