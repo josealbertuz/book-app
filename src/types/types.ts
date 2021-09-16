@@ -110,3 +110,41 @@ export type BooksFound = {
     subtitle?:                             string;
     id_bcid?:                              string[];
 }
+
+export type BookResponse = {
+    description?:     Created;
+    links:           Link[];
+    title:           string;
+    covers:          number[];
+    subject_places:  string[];
+    subjects:        string[];
+    subject_people:  string[];
+    key:             string;
+    authors:         Author[];
+    subject_times:   string[];
+    type:            Type;
+    latest_revision: number;
+    revision:        number;
+    created:         Created;
+    last_modified:   Created;
+}
+
+export type Author = {
+    author: Type;
+    type:   Type;
+}
+
+export type Type = {
+    key: string;
+}
+
+export type Created = {
+    type:  string;
+    value: string;
+}
+
+export type Link = {
+    title: string;
+    url:   string;
+    type:  Type;
+}
