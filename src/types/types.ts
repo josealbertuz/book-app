@@ -18,7 +18,7 @@ export type BookListItemProps = {
 }
 
 export type BookListProps = {
-    books : BookListItemProps[]
+    books : BooksFound[]
 }
 
 export type RequestState<Type> = {
