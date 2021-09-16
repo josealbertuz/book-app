@@ -1,34 +1,29 @@
 import { useReducer, useEffect } from "react";
 import bookFinderReducer from "../reducers/bookFinderReducer";
 import AxiosInstace from "../services/AxiosInstace"
-import { BookFinderResponse, Doc } from '../types/types';
+import { BookFinderResponse, RequestState} from '../types/types';
 
 
-export const useBookFinder = (bookTitle: string) => {
+export const useBookFinder = (bookTitle: string) : 
+RequestState<BookFinderResponse> => {
 
     const [books, dispatch] = useReducer(bookFinderReducer, {
-        data: [],
+        data: undefined,
         isLoading: false,
         error: false
-    })
-
+    });
 
     const getBooksByTitle = async () => {
         try {
             const { data } = await AxiosInstace.get<BookFinderResponse>(`/search.json?title=${bookTitle}`);
             dispatch({
                 type: 'success',
-                payload: data.docs.map((book : Doc) => ({
-                    id: book.key,
-                    title: book.title,
-                    author: book.author_name ? book.author_name.shift() : 'Unknown',
-                    image: book.cover_i
-                }))
-            })
+                payload: data
+                })
         } catch (error) {
             dispatch({
                 type: 'error'
-            })
+            });
         }
     }
 

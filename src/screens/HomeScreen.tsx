@@ -1,15 +1,14 @@
 import React, { useState } from 'react'
-import { StyleSheet, Text, TextInput, View } from 'react-native'
+import { ActivityIndicator, StyleSheet, Text, TextInput, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useBookFinder } from '../hooks/useBookFinder';
 import BookList from '../components/BookList';
-
 
 const HomeScreen = (): JSX.Element => {
 
     const [value, setValue] = useState<string>('');
 
-    const { data : books, isLoading, error } = useBookFinder(value);
+    const { data, isLoading, error } = useBookFinder(value);
 
     return (
         <SafeAreaView style={styles.screen}>
@@ -25,10 +24,10 @@ const HomeScreen = (): JSX.Element => {
                 <Text style={styles.subtitle}>Books searched</Text>
             </View>
             {
-                isLoading ? <Text style={styles.subtitle}>Loading...</Text> :
-                    (
-                        <BookList books={books} />
-                    )
+                isLoading && data?.docs === undefined ?
+                    <ActivityIndicator /> :
+                    <BookList books={data?.docs ?? []} />
+
             }
         </SafeAreaView>
     )
