@@ -3,7 +3,7 @@ import DetailsScreen from '../screens/DetailsScreen';
 
 export type StackParamList = {
     Home: undefined,
-    Details: { bookId: string }
+    Details: { bookId: string, image?: number}
 };
 
 export type HomeScreenNavigationProps = NativeStackScreenProps<StackParamList, 'Home'>

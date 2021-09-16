@@ -10,7 +10,7 @@ const BookListItem = ({ id, title, author, image }: BookListItemProps): JSX.Elem
 
     return (
         <TouchableOpacity
-            onPress={() => navigation.navigate('Details', {bookId: id})} 
+            onPress={() => navigation.navigate('Details', {bookId: id, image})} 
             style={styles.container}>
             <Image
                 
