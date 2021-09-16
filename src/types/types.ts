@@ -1,5 +1,4 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import DetailsScreen from '../screens/DetailsScreen';
 
 export type StackParamList = {
     Home: undefined,
@@ -19,6 +18,11 @@ export type BookListItemProps = {
 
 export type BookListProps = {
     books : BooksFound[]
+}
+
+export type BookDetailsProps = {
+    book: BookResponse,
+    image?: number 
 }
 
 export type RequestState<Type> = {
