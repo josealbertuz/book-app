@@ -1,4 +1,5 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { NavigationProp, RouteProp } from '@react-navigation/native';
 
 export type StackParamList = {
     Home: undefined,
@@ -13,11 +14,13 @@ export type BookListItemProps = {
     id: string,
     title: string,
     author?: string,
-    image?: number
+    image?: number,
+    navigation: NavigationProp<StackParamList>
 }
 
 export type BookListProps = {
-    books : BooksFound[]
+    books : BooksFound[],
+    navigation: NavigationProp<StackParamList>
 }
 
 export type BookDetailsProps = {

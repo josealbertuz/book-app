@@ -3,7 +3,7 @@ import { View, FlatList, ListRenderItemInfo } from 'react-native'
 import BookListItem from './BookListItem'
 import { BookListProps, BooksFound } from '../types/types';
 
-const BookList = ({books} : BookListProps): JSX.Element => {
+const BookList = ({books, navigation} : BookListProps): JSX.Element => {
 
     const renderItem = ({item} : ListRenderItemInfo<BooksFound>) => 
         <BookListItem
@@ -12,6 +12,7 @@ const BookList = ({books} : BookListProps): JSX.Element => {
             title={item.title}
             author={item.author_name?.at(0) ?? 'Unknown'}
             image={item.cover_i}
+            navigation={navigation}
         />
 
     return (

@@ -5,8 +5,9 @@ import BookList from '../components/BookList';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 import { getBooksByTitle } from '../slices/booksFinderSlice';
+import { HomeScreenNavigationProps } from '../types/types';
 
-const HomeScreen = (): JSX.Element => {
+const HomeScreen = ({navigation, route} : HomeScreenNavigationProps): JSX.Element => {
 
     const dispatch = useDispatch();
 
@@ -30,7 +31,7 @@ const HomeScreen = (): JSX.Element => {
             {
                 isLoading && data === undefined ?
                     <ActivityIndicator /> :
-                    <BookList books={data ?? []} />
+                    <BookList books={data ?? []} navigation={navigation} />
 
             }
         </SafeAreaView>

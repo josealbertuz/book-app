@@ -6,9 +6,8 @@ import { BookListItemProps, StackParamList } from '../types/types';
 import { getBookById } from '../slices/bookSlice';
 
 
-const BookListItem = ({ id, title, author, image }: BookListItemProps): JSX.Element => {
+const BookListItem = ({ id, title, author, image, navigation }: BookListItemProps): JSX.Element => {
 
-    const navigation = useNavigation<NavigationProp<StackParamList>>();
     const dispatch = useDispatch();
 
     return (
