@@ -1,14 +1,18 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { ActivityIndicator, StyleSheet, Text, TextInput, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useBookFinder } from '../hooks/useBookFinder';
 import BookList from '../components/BookList';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../store/store';
+import { getBooksByTitle } from '../slices/booksFinderSlice';
 
 const HomeScreen = (): JSX.Element => {
 
-    const [value, setValue] = useState<string>('');
+    const dispatch = useDispatch();
 
-    const { data, isLoading, error } = useBookFinder(value);
+    const { data, isLoading, error } = useSelector((state: RootState) => state.booksFound);
+
+    console.log(data);
 
     return (
         <SafeAreaView style={styles.screen}>
@@ -18,15 +22,15 @@ const HomeScreen = (): JSX.Element => {
                     <TextInput
                         placeholder="Type the name of a book"
                         style={styles.input}
-                        onSubmitEditing={({ nativeEvent: { text } }) => setValue(text)}
+                        onSubmitEditing={({ nativeEvent: { text } }) => dispatch(getBooksByTitle(text))}
                     />
                 </View>
                 <Text style={styles.subtitle}>Books searched</Text>
             </View>
             {
-                isLoading && data?.docs === undefined ?
+                isLoading && data === undefined ?
                     <ActivityIndicator /> :
-                    <BookList books={data?.docs ?? []} />
+                    <BookList books={data ?? []} />
 
             }
         </SafeAreaView>

@@ -1,16 +1,16 @@
 import React from 'react'
-import { View, Text, FlatList, ListRenderItem, ListRenderItemInfo } from 'react-native'
+import { View, FlatList, ListRenderItemInfo } from 'react-native'
 import BookListItem from './BookListItem'
-import { BookListItemProps, BookListProps, BooksFound } from '../types/types';
+import { BookListProps, BooksFound } from '../types/types';
 
 const BookList = ({books} : BookListProps): JSX.Element => {
 
-    const renderItem = ({item} : ListRenderItemInfo<BooksFound>) =>
+    const renderItem = ({item} : ListRenderItemInfo<BooksFound>) => 
         <BookListItem
             key={item.key}
             id={item.key}
             title={item.title}
-            author={item.author_name?.shift() ?? 'Unknown'}
+            author={item.author_name?.at(0) ?? 'Unknown'}
             image={item.cover_i}
         />
 
