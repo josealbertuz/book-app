@@ -1,16 +1,22 @@
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import React from 'react'
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
-import { BookListItemProps, HomeScreenNavigationProps, StackParamList } from '../types/types';
+import { useDispatch } from 'react-redux';
+import { BookListItemProps, StackParamList } from '../types/types';
+import { getBookById } from '../slices/bookSlice';
 
 
 const BookListItem = ({ id, title, author, image }: BookListItemProps): JSX.Element => {
 
     const navigation = useNavigation<NavigationProp<StackParamList>>();
+    const dispatch = useDispatch();
 
     return (
         <TouchableOpacity
-            onPress={() => navigation.navigate('Details', {bookId: id, image})} 
+            onPress={() => {
+                dispatch(getBookById(id));
+                navigation.navigate('Details', {bookId: id, image})
+            }} 
             style={styles.container}>
             <Image
                 

@@ -2,13 +2,14 @@ import React from 'react'
 import { View, StyleSheet, ActivityIndicator, Text } from 'react-native'
 import { Header, Icon } from 'react-native-elements';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useSelector } from 'react-redux';
 import BookDetails from '../components/BookDetails';
-import useBook from '../hooks/useBook';
-import { DetailsScreenNavigationProps, BookResponse } from '../types/types';
+import { DetailsScreenNavigationProps } from '../types/types';
+import { RootState } from '../store/store';
 
 const DetailsScreen = ({ navigation, route }: DetailsScreenNavigationProps) => {
 
-  const {data, isLoading, error} = useBook(route.params.bookId);
+  const {data, isLoading, error} = useSelector((state: RootState) => state.book);
   
   return (
     <SafeAreaView style={styles.container}>
